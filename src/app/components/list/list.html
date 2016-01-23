@@ -1,0 +1,23 @@
+<div class="container">
+  <section id="kakeibo_list">
+    <!-- 一覧表示部分 -->
+    <table class="table table-striped">
+      <thead>
+        <th>日付</th>
+        <th>金額</th>
+        <th>品目</th>
+        <th>削除</th>
+      </thead>
+      </tbody>
+      <tr ng-repeat="kakeibo in vm.kakeibos">
+        <td ng-bind='kakeibo.formatDate()'></td>
+        <td ng-bind='kakeibo.kakeibo.formatDate()'></td>
+        <td ng-bind='kakeibo.item'></td>
+        <td>
+          <button type="button" class="btn-default" ng-click='vm.remove(kakeibo)'>削除</button>
+        </td>
+      </tr>
+      <tbody>
+    </table>
+  </section>
+</div>

@@ -17,7 +17,7 @@
     }));
 
     it('should have a timestamp creation date', function() {
-      expect(vm.creationDate).toEqual(jasmine.any(Number));
+      expect(vm.creationdate).toequal(jasmine.any(number));
     });
 
     it('should define animate class after delaying timeout ', function() {
