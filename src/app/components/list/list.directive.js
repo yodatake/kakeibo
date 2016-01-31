@@ -21,8 +21,8 @@
     /** @ngInject */
     function KakeiboListController($rootScope, moment, Kakeibo, Dispatcher, Store, KakeiboAction) {
       var vm = this;
-      vm.remove = remove;
-      vm.selected = selected;
+
+      // htmlにバインドする家計簿一覧
       vm.kakeibos = [];
 
       // deregister on $destroy
@@ -30,26 +30,29 @@
         Store.event.removeListener(onKakeiboChange);
       });
 
-      activate();
-
+      // 初期化処理
       function activate() {
         // Storeのchangeイベントを監視
         Store.event.on('change', onKakeiboChange);
         // 家計簿一覧取得
         KakeiboAction.getKakeibos();
       }
-
-      function remove(kakeibo) {
-        KakeiboAction.remove(kakeibo);
-      }
-
-      function selected(kakeibo) {
-        KakeiboAction.select(kakeibo);
-      }
-
+      // Storeの家計簿が変更された時のイベントハンドラ
       function onKakeiboChange() {
         vm.kakeibos = Store.getKakeibos();
+        KakeiboAction.drawGraph(vm.kakeibos);
       }
+
+      // 削除ボタン押下時処理
+      vm.remove = function(kakeibo) {
+        KakeiboAction.remove(kakeibo);
+      };
+      // 選択ボタン押下時処理
+      vm.selected = function(kakeibo) {
+        KakeiboAction.select(kakeibo);
+      };
+
+      activate();
     }
   }
 

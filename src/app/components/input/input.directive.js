@@ -21,37 +21,37 @@
     /** @ngInject */
     function KakeiboInputController($rootScope, moment, Kakeibo, Dispatcher, Store, KakeiboAction) {
       var vm = this;
-      vm.add = add;
-      vm.modify = modify;
+      // とりあえず空で初期化
       vm.kakeibo = new Kakeibo(new Date(), 0, "");
 
       // deregister on $destroy
       $rootScope.$on('$destroy', function() {
-        // Store.event.removeListener(onKakeiboSelect);
+        Store.event.removeListener(onKakeiboSelect);
       });
 
-      activate();
-
+      // 初期化処理
       function activate() {
         // Storeのchangeイベントを監視
         Store.event.on('select', onKakeiboSelect);
       }
-
-      function add(kakeibo) {
+      // 新規ボタン押下時処理
+      vm.add = function(kakeibo) {
         // Intの入力値として変換
         kakeibo.money = parseInt(kakeibo.money);
         KakeiboAction.add(kakeibo);
-      }
-
-      function modify(kakeibo) {
+      };
+      // 変更ボタン押下時処理
+      vm.modify = function(kakeibo) {
         // Intの入力値として変換
         kakeibo.money = parseInt(kakeibo.money);
         KakeiboAction.modify(kakeibo);
-      }
+      };
 
       function onKakeiboSelect() {
         vm.kakeibo = Store.selectedKakeibo();
       }
+
+      activate();
     }
   }
 

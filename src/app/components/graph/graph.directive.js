@@ -24,21 +24,23 @@
 
       // deregister on $destroy
       $rootScope.$on('$destroy', function() {
-      //  GraphStore.event.removeListener(drawGraph);
+        GraphStore.event.removeListener(drawGraph);
       });
 
       // 初期化処理
-      activate();
       function activate() {
         // GraphStore初期化(グラフを描画するdomを指定)
         GraphStore.init('chart');
-        // Storeのchangeイベントを監視
+        // Storeのchangeイベントを監視し、イベントが発火したらグラフ描画Actionをキック
         Store.event.on('change', drawGraph);
       }
-      // グラフの描画
+
+      // グラフの描画処理
       function drawGraph() {
         KakeiboAction.drawGraph(Store.getKakeibos());
       }
+
+      activate();
     }
   }
 

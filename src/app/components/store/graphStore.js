@@ -7,12 +7,17 @@
   /** @ngInject */
   function GraphStore(moment, Dispatcher, Kakeibo, Actions, Store) {
     var event = new EventEmitter(),
-      dispatchToken,
       chart;
+
+    // Dispatcher監視とイベント記述
+    Dispatcher.on(Actions.DRAW_GRAPH, function(kakeibos) {
+      drawGraph(kakeibos);
+      // 変更通知
+      event.emit('change');
+    });
 
     //Read only API
     var service = {
-      dispatchToken: dispatchToken,
       init: initGraph,
       event: event
     };
@@ -35,8 +40,7 @@
       });
     }
 
-    // Dispatcher監視とイベント記述
-    Dispatcher.on(Actions.DRAW_GRAPH, function(kakeibos) {
+    function drawGraph(kakeibos) {
       var datas = convartToDayOfCostGraphData(kakeibos);
       chart.load({
         columns: [
@@ -44,10 +48,7 @@
           datas.money
         ]
       });
-
-      // 変更通知
-      event.emit('change');
-    });
+    }
 
     // 日毎の出費のグラフ用データ生成
     // {"dates":["dates",....], "money":["金額", ...]}

@@ -7,7 +7,6 @@
   /** @ngInject */
   function Store(moment, Dispatcher, Kakeibo, Actions) {
     var event = new EventEmitter(),
-      dispatchToken,
       kakeibos = [],
       selKakeibo = {};
 
@@ -87,7 +86,6 @@
     var service = {
       getKakeibos: getKakeibos,
       selectedKakeibo: selectedKakeibo,
-      dispatchToken: dispatchToken,
       event: event
     };
 
