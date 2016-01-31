@@ -12,7 +12,7 @@
       templateUrl: 'app/components/list/list.html',
       scope: {},
       controller: KakeiboListController,
-      controllerAs: 'vm',
+      controllerAs: 'list',
       bindToController: true
     };
 
@@ -22,11 +22,12 @@
     function KakeiboListController($rootScope, moment, Kakeibo, Dispatcher, Store, KakeiboAction) {
       var vm = this;
       vm.remove = remove;
+      vm.selected = selected;
       vm.kakeibos = [];
 
       // deregister on $destroy
       $rootScope.$on('$destroy', function() {
-        CartStore.event.removeListener(cartUpdated);
+        Store.event.removeListener(onKakeiboChange);
       });
 
       activate();
@@ -40,6 +41,10 @@
 
       function remove(kakeibo) {
         KakeiboAction.remove(kakeibo);
+      }
+
+      function selected(kakeibo) {
+        KakeiboAction.select(kakeibo);
       }
 
       function onKakeiboChange() {

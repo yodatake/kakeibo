@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('kakeibo', ['ngAnimate', 'ngCookies', 'ngMessages', 'restangular', 'ui.router', 'toastr']);
+    .module('kakeibo', ['ngAnimate', 'ngCookies', 'ngMessages', 'restangular', 'ui.router']);
 
 })();

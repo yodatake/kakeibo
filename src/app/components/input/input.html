@@ -1,0 +1,23 @@
+<div class="container">
+  <section id="kakeibo_input">
+    <h2>入力</h2>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="in_item" accesskey="i">日付</label>
+        <input class="form-control" ng-model="input.kakeibo.date" type="date">
+      </div>
+      <div class="form-group">
+        <label for="in_item" accesskey="i">品目</label>
+        <input class="form-control" ng-model="input.kakeibo.item" type="text">
+      </div>
+      <div class="form-group">
+        <label for="in_item" accesskey="m">金額</label>
+        <input class="form-control" ng-model="input.kakeibo.money" type="text">
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary" type="button" ng-click="input.add(input.kakeibo)" value="新規">
+        <input class="btn btn-primary" type="button" ng-click="input.modify(input.kakeibo)" value="更新">
+      </div>
+      </form>
+  </section>
+</div>

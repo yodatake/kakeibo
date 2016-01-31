@@ -6,9 +6,10 @@
 
   /** @ngInject */
   function Dispatcher() {
-    var self,
-      event = new EventEmitter();
+    // イベント監視機能を委譲
+    var event = new EventEmitter();
 
+    // 監視設定
     function on(type, listener) {
       if (angular.isDefined(listener)) {
         event.on(type, listener);
@@ -21,9 +22,12 @@
       event.emit(type, data);
     }
 
-    return {
+    // 公開API
+    var service = {
       emit: emit,
       on: on
-    }
+    };
+
+    return service;
   }
 })();

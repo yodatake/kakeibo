@@ -8,7 +8,8 @@
   function kakeibo(dateFormat, moment) {
 
     // コンストラクタ
-    function Kakeibo(date, money, item) {
+    function Kakeibo(id, date, money, item) {
+      this.id = id;
       this.date = date;
       this.money = money;
       this.item = item;
