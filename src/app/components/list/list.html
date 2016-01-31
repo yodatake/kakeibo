@@ -1,5 +1,6 @@
 <div class="container">
   <section id="kakeibo_list">
+    <h2>一覧</h2>
     <!-- 一覧表示部分 -->
     <table class="table table-striped">
       <thead>
@@ -9,12 +10,12 @@
         <th>削除</th>
       </thead>
       </tbody>
-      <tr ng-repeat="kakeibo in vm.kakeibos">
+      <tr ng-repeat="kakeibo in list.kakeibos" ng-click='list.selected(kakeibo)'>
         <td ng-bind='kakeibo.formatDate()'></td>
-        <td ng-bind='kakeibo.kakeibo.formatDate()'></td>
+        <td ng-bind='kakeibo.money'></td>
         <td ng-bind='kakeibo.item'></td>
         <td>
-          <button type="button" class="btn-default" ng-click='vm.remove(kakeibo)'>削除</button>
+          <button type="button" class="btn-default" ng-click='list.remove(kakeibo)'>削除</button>
         </td>
       </tr>
       <tbody>

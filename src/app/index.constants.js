@@ -6,8 +6,10 @@
     .module('kakeibo')
     .constant('malarkey', malarkey)
     .constant('moment', moment)
-  	.value(
-  		'dateFormat', {
-  			'jpn': 'YYYY年MM月DD日'
-  		});
+    .constant('c3', c3)
+    .constant('_', _)
+    .value(
+      'dateFormat', {
+        'jpn': 'YYYY年MM月DD日'
+      });
 })();
